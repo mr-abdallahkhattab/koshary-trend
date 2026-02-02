@@ -1,0 +1,1020 @@
+// بيانات المنيو
+const menuData = [
+  // --- قسم الكشري ---
+  {
+    id: 1,
+    title: "علبة كشري صغيرة",
+    price: "10 ريال",
+    category: "koshary",
+    img: "./images/k-s.jpg",
+  },
+  {
+    id: 2,
+    title: "علبة كشري صغيرة باللحمة المفرومة",
+    price: "14 ريال",
+    category: "koshary",
+    img: "./images/k-s-la7.jpg",
+  },
+  {
+    id: 3,
+    title: "علبة كشري صغيرة الكبدة",
+    price: "14 ريال",
+    category: "koshary",
+    img: "./images/k-s-kib.jpg",
+  },
+  {
+    id: 4,
+    title: "علبة كشري صغير بالسجق",
+    price: "14 ريال",
+    category: "koshary",
+    img: "./images/k-s-sog.jpg",
+  },
+  {
+    id: 23,
+    title: "علبة كشري صغيرة دجاج شاورما",
+    price: "14 ريال",
+    category: "koshary",
+    img: "images/k-l-sha.jpg",
+  },
+  {
+    id: 5,
+    title: "علبة كشري كبيرة",
+    price: "14 ريال",
+    category: "koshary",
+    img: "./images/k-l.jpg",
+  },
+  {
+    id: 6,
+    title: "علبة كشري كبيرة باللحمة المفرومة",
+    price: "18 ريال",
+    category: "koshary",
+    img: "images/k-l-la7.jpg",
+  },
+  {
+    id: 7,
+    title: "علبة كشري كبيرة بالكبدة",
+    price: "18 ريال",
+    category: "koshary",
+    img: "./images/k-l-kib.jpg",
+  },
+  {
+    id: 24,
+    title: "علبة كشري كبير بالسجق",
+    price: "18 ريال",
+    category: "koshary",
+    img: "./images/k-s-sog.jpg",
+  },
+  {
+    id: 8,
+    title: "علبة كشري كبيرة دجاج شاورما",
+    price: "18 ريال",
+    category: "koshary",
+    img: "images/k-l-sha.jpg",
+  },
+  {
+    id: 9,
+    title: "قدر كشري عائلي صغير",
+    price: "28 ريال",
+    category: "koshary",
+    img: "images/k-xl-s.jpg",
+  },
+  {
+    id: 10,
+    title: "قدر كشري عائلي كبير",
+    price: "45 ريال",
+    category: "koshary",
+    img: "images/k-xl.jpg",
+  },
+
+  // --- قسم الكريب ---
+  {
+    id: 11,
+    title: "كريب بطاطس",
+    price: "10 ريال",
+    category: "crepe",
+    img: "images/kr-pot.jpg",
+  },
+  {
+    id: 12,
+    title: "كريب برجر",
+    price: "16 ريال",
+    category: "crepe",
+    img: "images/kr-brg.jpg",
+  },
+  {
+    id: 13,
+    title: "كريب بانيه",
+    price: "16 ريال",
+    category: "crepe",
+    img: "images/kr-bane.jpg",
+  },
+  {
+    id: 14,
+    title: "كريب كفته مشويه",
+    price: "20 ريال",
+    category: "crepe",
+    img: "images/kr-kof.jpg",
+  },
+  {
+    id: 15,
+    title: "كريب زنجر بارد / حار",
+    price: "16 ريال",
+    category: "crepe",
+    img: "images/kr-zin.jpg",
+  },
+  {
+    id: 16,
+    title: "كريب ميكس دجاج",
+    price: "20 ريال",
+    category: "crepe",
+    img: "images/kr-mix.jpg",
+  },
+  {
+    id: 25,
+    title: "كريب استربس بارد / حار",
+    price: "16 ريال",
+    category: "crepe",
+    img: "images/kr-str.jpg",
+  },
+  {
+    id: 26,
+    title: "كريب كونو ميكس ترند",
+    price: "22 ريال",
+    category: "crepe",
+    img: "images/kr-cono-mx.jpg",
+  },
+  {
+    id: 27,
+    title: "كريب سجق",
+    price: "20 ريال",
+    category: "crepe",
+    img: "images/kr-sog.jpg",
+  },
+
+  // --- قسم المشويات ---
+  {
+    id: 17,
+    title: "نص حبة على الفحم",
+    price: "20 ريال",
+    category: "grill",
+    img: "images/mash-half-fa7m.jpg",
+  },
+  {
+    id: 28,
+    title: "نص حبه دجاج شيش",
+    price: "20 ريال",
+    category: "grill",
+    img: "images/mash-sish.jpg",
+  },
+  {
+    id: 18,
+    title: "نفر كباب دجاج",
+    price: "23 ريال",
+    category: "grill",
+    img: "images/mash-kab.jpg",
+  },
+  {
+    id: 19,
+    title: "نفر اوصال لحمة",
+    price: "30 ريال",
+    category: "grill",
+    img: "images/mash-s-awsal.jpg",
+  },
+  {
+    id: 29,
+    title: "نفر سجق مشوي فحم",
+    price: "25 ريال",
+    category: "grill",
+    img: "images/mash-sog.jpg",
+  },
+  {
+    id: 45,
+    title: "نفر سجق اسكندراني",
+    price: "25 ريال",
+    category: "grill",
+    img: "images/unnamed (27).jpg",
+  },
+  {
+    id: 46,
+    title: "نفر ريش ضاني",
+    price: "32 ريال",
+    category: "grill",
+    img: "images/unnamed (28).jpg",
+  },
+  {
+    id: 48,
+    title: "نفر شيش طاووق",
+    price: "25 ريال",
+    category: "grill",
+    img: "images/unnamed (30).jpg",
+  },
+  {
+    id: 49,
+    title: "نفر کباب طرب",
+    price: "25 ريال",
+    category: "grill",
+    img: "images/unnamed (31).jpg",
+  },
+  {
+    id: 50,
+    title: "نفر كبدة إسكندراني",
+    price: "15 ريال",
+    category: "grill",
+    img: "images/unnamed (32).jpg",
+  },
+  {
+    id: 51,
+    title: "نفر كباب لحم",
+    price: "30 ريال",
+    category: "grill",
+    img: "images/unnamed (33).jpg",
+  },
+  {
+    id: 52,
+    title: "واحد كيلو كباب لحمة",
+    price: "110 ريال",
+    category: "grill",
+    img: "images/unnamed (34).jpg",
+  },
+  {
+    id: 53,
+    title: "واحد كيلو طرب ضاني",
+    price: "100 ريال",
+    category: "grill",
+    img: "images/unnamed (35).jpg",
+  },
+  {
+    id: 54,
+    title: "واحد كيلو شيش طاووق",
+    price: "90 ريال",
+    category: "grill",
+    img: "images/unnamed (36).jpg",
+  },
+  {
+    id: 55,
+    title: "نفر مشكل مشاوي",
+    price: "30 ريال",
+    category: "grill",
+    img: "images/unnamed (37).jpg",
+  },
+  {
+    id: 56,
+    title: "حبة دجاج على الفحم",
+    price: "40 ريال",
+    category: "grill",
+    img: "images/unnamed (38).jpg",
+  },
+  {
+    id: 57,
+    title: "حبه دجاج شيش",
+    price: "40 ريال",
+    category: "grill",
+    img: "images/unnamed (39).jpg",
+  },
+  {
+    id: 58,
+    title: "واحد كيلو ريش ضاني",
+    price: "120 ريال",
+    category: "grill",
+    img: "images/unnamed (40).jpg",
+  },
+  {
+    id: 59,
+    title: "واحد كيلو مشكل مشاوي",
+    price: "110 ريال",
+    category: "grill",
+    img: "images/unnamed (41).jpg",
+  },
+
+  // ==========================================================
+  // 2. قسم السندوتشات (Sandwiches)
+  // ==========================================================
+  {
+    id: 100,
+    title: "سندوتش سجق",
+    price: "12 ريال",
+    category: "sandwich",
+    img: "images/unnamed (42).jpg",
+  },
+  {
+    id: 101,
+    title: "سندوتش حواوشي لحم مفروم بالجبن",
+    price: "12 ريال",
+    category: "sandwich",
+    img: "images/unnamed (43).jpg",
+  },
+  {
+    id: 102,
+    title: "سندوتش حواوشي لحم ضاني",
+    price: "12 ريال",
+    category: "sandwich",
+    img: "images/unnamed (44).jpg",
+  },
+  {
+    id: 103,
+    title: "سندوتش حواوشي لحم",
+    price: "10 ريال",
+    category: "sandwich",
+    img: "images/unnamed (45).jpg",
+  },
+  {
+    id: 104,
+    title: "سندوتش كباب دجاج",
+    price: "10 ريال",
+    category: "sandwich",
+    img: "images/unnamed (46).jpg",
+  },
+  {
+    id: 105,
+    title: "سندوتش كبدة اسكندراني",
+    price: "10 ريال",
+    category: "sandwich",
+    img: "images/unnamed (47).jpg",
+  },
+  {
+    id: 106,
+    title: "سندوتش كباب لحم",
+    price: "10 ريال",
+    category: "sandwich",
+    img: "images/unnamed (48).jpg",
+  },
+  {
+    id: 107,
+    title: "سندوتش طرب",
+    price: "10 ريال",
+    category: "sandwich",
+    img: "images/unnamed (49).jpg",
+  },
+
+  // ==========================================================
+  // 3. قسم المحاشي (Mahashi)
+  // ==========================================================
+  {
+    id: 120,
+    title: "محشى مشكل صغير",
+    price: "10 ريال",
+    category: "mahashi",
+    img: "images/unnamed (50).jpg",
+  },
+  {
+    id: 121,
+    title: "فرد حمام محشي",
+    price: "30 ريال",
+    category: "mahashi",
+    img: "images/unnamed (51).jpg",
+  },
+  {
+    id: 122,
+    title: "سمبوسة لحم ( 5 حبه )",
+    price: "8 ريال",
+    category: "mahashi",
+    img: "images/samb.jpg",
+  },
+  {
+    id: 123,
+    title: "سمبوسة جبن ( 5 حبه )",
+    price: "5 ريال",
+    category: "mahashi",
+    img: "images/unnamed (53).jpg",
+  },
+  {
+    id: 124,
+    title: "محشي ورق عنب",
+    price: "20 ريال",
+    category: "mahashi",
+    img: "images/unnamed (54).jpg",
+  },
+  {
+    id: 125,
+    title: "محشي ملفوف",
+    price: "20 ريال",
+    category: "mahashi",
+    img: "images/unnamed (55).jpg",
+  },
+  {
+    id: 126,
+    title: "محشي مشكل كبير",
+    price: "20 ريال",
+    category: "mahashi",
+    img: "images/unnamed (56).jpg",
+  },
+
+  // ==========================================================
+  // 4. قسم الإضافات والأرز (Extras)
+  // ==========================================================
+  {
+    id: 140,
+    title: "بطاطس بوم فريت",
+    price: "5 ريال",
+    category: "extra",
+    img: "images/fri-pot.jpg",
+  },
+  {
+    id: 141,
+    title: "ارز مصري بالشعرية",
+    price: "5 ريال",
+    category: "extra",
+    img: "images/unnamed (58).jpg",
+  },
+  {
+    id: 142,
+    title: "ارز مصري ابيض",
+    price: "5 ريال",
+    category: "extra",
+    img: "images/unnamed (59).jpg",
+  },
+  {
+    id: 143,
+    title: "ارز بسمتي",
+    price: "6 ريال",
+    category: "extra",
+    img: "images/unnamed (60).jpg",
+  },
+  {
+    id: 144,
+    title: "خبز محمص",
+    price: "3 ريال",
+    category: "extra",
+    img: "images/unnamed (61).jpg",
+  },
+
+  // ==========================================================
+  // 5. قسم الإيدامات (Edam)
+  // ==========================================================
+  {
+    id: 150,
+    title: "ملوخية",
+    price: "7 ريال",
+    category: "edam",
+    img: "images/unnamed (62).jpg",
+  },
+  {
+    id: 151,
+    title: "مسقعة باللحمة المفرومة",
+    price: "10 ريال",
+    category: "edam",
+    img: "images/unnamed (63).jpg",
+  },
+  {
+    id: 152,
+    title: "خضار مشکل",
+    price: "7 ريال",
+    category: "edam",
+    img: "images/unnamed (64).jpg",
+  },
+  {
+    id: 153,
+    title: "بامية",
+    price: "7 ريال",
+    category: "edam",
+    img: "images/unnamed (65).jpg",
+  },
+
+  // ==========================================================
+  // 6. قسم الوجبات والفتة (Hot Meals)
+  // ==========================================================
+  {
+    id: 170,
+    title: "فته لحم ضاني",
+    price: "40 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (69).jpg",
+  },
+  {
+    id: 171,
+    title: "فتة لحم",
+    price: "32 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (70).jpg",
+  },
+  {
+    id: 172,
+    title: "فتة ساده",
+    price: "10 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (71).jpg",
+  },
+  {
+    id: 173,
+    title: "بطه كامله",
+    price: "120 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (72).jpg",
+  },
+  {
+    id: 174,
+    title: "حبة دجاج فرن",
+    price: "40 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (73).jpg",
+  },
+  {
+    id: 175,
+    title: "فتة كوارع",
+    price: "32 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (74).jpg",
+  },
+  {
+    id: 176,
+    title: "نص بطه",
+    price: "60 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (75).jpg",
+  },
+  {
+    id: 177,
+    title: "فته موزه",
+    price: "40 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (76).jpg",
+  },
+
+  // ==========================================================
+  // 7. قسم الطواجن (Tagen)
+  // ==========================================================
+  {
+    id: 210,
+    title: "طاجن خضار مشکل لحمة",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (85).jpg",
+  },
+  {
+    id: 211,
+    title: "طاجن بطاطس لحمة",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (86).jpg",
+  },
+  {
+    id: 212,
+    title: "طاجن بامية لحمة",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (87).jpg",
+  },
+  {
+    id: 213,
+    title: "طاجن ورق عنب بالكوارع",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (88).jpg",
+  },
+  {
+    id: 214,
+    title: "طاجن لحمة بالبصل",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (89).jpg",
+  },
+  {
+    id: 215,
+    title: "طاجن عكاوي",
+    price: "32 ريال",
+    category: "tagen",
+    img: "images/unnamed (90).jpg",
+  },
+  {
+    id: 216,
+    title: "طاجن رز معمر باللحمه",
+    price: "30 ريال",
+    category: "tagen",
+    img: "images/unnamed (91).jpg",
+  },
+  {
+    id: 217,
+    title: "طاجن رز معمر",
+    price: "15 ريال",
+    category: "tagen",
+    img: "images/unnamed (92).jpg",
+  },
+
+  // ==========================================================
+  // 8. قسم المكرونات (Pasta)
+  // ==========================================================
+  {
+    id: 230,
+    title: "مكرونة بلونيز باللحمة المفرومة",
+    price: "15 ريال",
+    category: "pasta",
+    img: "images/unnamed (93).jpg",
+  },
+  {
+    id: 231,
+    title: "مكرونة بشاميل",
+    price: "15 ريال",
+    category: "pasta",
+    img: "images/unnamed (94).jpg",
+  },
+  {
+    id: 232,
+    title: "مكرونة بالسجق",
+    price: "15 ريال",
+    category: "pasta",
+    img: "images/unnamed (95).jpg",
+  },
+  {
+    id: 233,
+    title: "مكرونة الكبدة بالصلصة",
+    price: "15 ريال",
+    category: "pasta",
+    img: "images/unnamed (96).jpg",
+  },
+  {
+    id: 234,
+    title: "مكرونة نجرسكو",
+    price: "15 ريال",
+    category: "pasta",
+    img: "images/unnamed (97).jpg",
+  },
+
+  // ==========================================================
+  // 9. قسم الشوربة (Soup)
+  // ==========================================================
+  {
+    id: 200,
+    title: "شوربة دجاج بالكريمة",
+    price: "12 ريال",
+    category: "soup",
+    img: "images/unnamed (81).jpg",
+  },
+  {
+    id: 201,
+    title: "شوربة لسان بالحمة المفروم",
+    price: "10 ريال",
+    category: "soup",
+    img: "images/unnamed (82).jpg",
+  },
+  {
+    id: 202,
+    title: "شوربة عدس",
+    price: "7 ريال",
+    category: "soup",
+    img: "images/unnamed (83).jpg",
+  },
+  {
+    id: 203,
+    title: "شوربة كوارع قطع",
+    price: "12 ريال",
+    category: "soup",
+    img: "images/unnamed (84).jpg",
+  },
+
+  // ==========================================================
+  // 10. قسم السلطات (Salad)
+  // ==========================================================
+  {
+    id: 190,
+    title: "علبة طحينه",
+    price: "2 ريال",
+    category: "salad",
+    img: "images/unnamed (77).jpg",
+  },
+  {
+    id: 191,
+    title: "سلطة طماطم متبلة",
+    price: "7 ريال",
+    category: "salad",
+    img: "images/unnamed (78).jpg",
+  },
+  {
+    id: 192,
+    title: "سلطة خضراء",
+    price: "5 ريال",
+    category: "salad",
+    img: "images/unnamed (79).jpg",
+  },
+  {
+    id: 193,
+    title: "سلطة الطحينه كبير",
+    price: "4 ريال",
+    category: "salad",
+    img: "images/unnamed (80).jpg",
+  },
+
+  // ==========================================================
+  // 11. قسم الحلويات (Dessert)
+  // ==========================================================
+  {
+    id: 160,
+    title: "رز بالحليب فرن بالقشطه",
+    price: "7 ريال",
+    category: "dessert",
+    img: "images/unnamed (66).jpg",
+  },
+  {
+    id: 161,
+    title: "ام علي",
+    price: "7 ريال",
+    category: "dessert",
+    img: "images/unnamed (68).jpg",
+  },
+  {
+    id: 162,
+    title: "ارز بالحليب",
+    price: "5 ريال",
+    category: "dessert",
+    img: "images/unnamed (67).jpg",
+  },
+
+  // ==========================================================
+  // 12. قسم المشروبات (Drinks)
+  // ==========================================================
+  {
+    id: 250,
+    title: "سفن اب",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/7up.jpg",
+  },
+  {
+    id: 251,
+    title: "ديو",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/unnamed (100).jpg",
+  },
+  {
+    id: 252,
+    title: "حمضيات",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/unnamed - 2026-02-01T190555.267.jpg",
+  },
+  {
+    id: 253,
+    title: "بيبسي",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/pepsi.jpg",
+  },
+  {
+    id: 254,
+    title: "لبن المراعي 180 مل",
+    price: "2 ريال",
+    category: "drinks",
+    img: "images/laban.jpg",
+  },
+  {
+    id: 255,
+    title: "كينزا كولا",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/kinza.jpg",
+  },
+  {
+    id: 256,
+    title: "كينزا حمضيات",
+    price: "3 ريال",
+    category: "drinks",
+    img: "images/kinza-lim.jpg",
+  },
+  {
+    id: 257,
+    title: "عصير الربيع 250 مل",
+    price: "2 ريال",
+    category: "drinks",
+    img: "images/unnamed - 2026-02-01T190555.440.jpg",
+  },
+  {
+    id: 258,
+    title: "مياه",
+    price: "1 ريال",
+    category: "drinks",
+    img: "images/water.jpg",
+  },
+];
+
+const menuContainer = document.getElementById("menuItems");
+const btns = document.querySelectorAll(".category-btn"); // لاحظ الاسم الجديد للكلاس
+const cartContainer = document.getElementById("cartItemsContainer");
+const cartTotalElement = document.getElementById("cartTotal");
+const cartBadge = document.getElementById("cartBadge");
+const floatingBtn = document.getElementById("floatingCartBtn");
+
+// مصفوفة السلة الفاضية
+let cart = [];
+
+// ==========================================
+// 3. التشغيل عند فتح الصفحة (Initialization)
+// ==========================================
+window.addEventListener("DOMContentLoaded", function () {
+  displayMenu(menuData);
+});
+
+// ==========================================
+// 4. دوال العرض والفلتر (Display & Filter)
+// ==========================================
+
+// دالة رسم المنيو على الشاشة
+function displayMenu(items) {
+  let displayMenu = items.map(function (item) {
+    return `
+      <div class="menu-card">
+          <div style="overflow: hidden;">
+              <img src="${item.img}" class="card-img-top" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x400?text=غير+متوفر'">
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">${item.title}</h5>
+              <div class="card-footer-actions">
+                  <span class="card-price">${item.price}</span>
+                  <button class="btn-simple-add" onclick="addToCart(${item.id})">
+                      <i class="fas fa-cart-plus ms-2"></i> أضف 
+                  </button>
+              </div>
+          </div>
+      </div>
+    `;
+  });
+  displayMenu = displayMenu.join("");
+  menuContainer.innerHTML = displayMenu;
+}
+
+// تفعيل أزرار الفلتر
+btns.forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    // نشيل active من كل الزراير ونحطه على اللي اتداس
+    btns.forEach(function (b) {
+      b.classList.remove("active");
+    });
+    e.currentTarget.classList.add("active");
+
+    const category = e.currentTarget.dataset.id;
+
+    // تصفية البيانات
+    const menuCategory = menuData.filter(function (menuItem) {
+      return menuItem.category === category;
+    });
+
+    if (category === "all") {
+      displayMenu(menuData);
+    } else {
+      displayMenu(menuCategory);
+    }
+  });
+});
+
+// ==========================================
+// 5. منطق سلة المشتريات (Cart Logic)
+// ==========================================
+
+// إضافة منتج للسلة
+function addToCart(id) {
+  // ندور على المنتج في المنيو الأصلي
+  const item = menuData.find((product) => product.id === id);
+  // نشوف هل هو موجود في السلة ولا لأ
+  const itemInCart = cart.find((product) => product.id === id);
+
+  if (itemInCart) {
+    // لو موجود، زود العدد
+    itemInCart.qty++;
+  } else {
+    // لو جديد، ضيفه وخليه عدده 1
+    cart.push({ ...item, qty: 1 });
+  }
+
+  // تحديث شكل السلة والعداد (بدون فتح السلة أوتوماتيك)
+  updateCartUI();
+
+  // (اختياري) ممكن تعمل Alert صغير هنا يعرف العميل إن المنتج انضاف
+  // alert("تمت الإضافة للسلة!");
+}
+
+// رسم محتويات السلة وحساب الإجمالي
+function updateCartUI() {
+  cartContainer.innerHTML = "";
+  let totalPrice = 0;
+  let totalItems = 0;
+
+  // لو السلة فاضية
+  if (cart.length === 0) {
+    cartContainer.innerHTML = `
+        <div class="text-center text-muted mt-5">
+            <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+            <p>السلة فارغة حالياً</p>
+        </div>`;
+    cartBadge.innerText = "0";
+    floatingBtn.classList.add("d-none"); // نخفي الزر العائم
+    cartTotalElement.innerText = "0 ريال";
+    return;
+  }
+
+  // إظهار الزر العائم
+  floatingBtn.classList.remove("d-none");
+
+  // رسم العناصر
+  cart.forEach((item) => {
+    // تحويل السعر من نص لرقم (شيل كلمة ريال)
+    // نستخدم trim() عشان لو فيه مسافات زيادة
+    const priceNumber = parseFloat(item.price.replace(" ريال", "").trim());
+    const itemTotal = priceNumber * item.qty;
+
+    totalPrice += itemTotal;
+    totalItems += item.qty;
+
+    cartContainer.innerHTML += `
+      <div class="d-flex align-items-center mb-3 border-bottom pb-3">
+          <img src="${item.img}" class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
+          <div class="ms-3 flex-grow-1">
+              <h6 class="mb-0 fw-bold small">${item.title}</h6>
+              <small class="text-primary fw-bold">${itemTotal} ريال</small>
+          </div>
+          <div class="d-flex align-items-center bg-light rounded-pill px-2">
+              <button class="btn btn-sm text-danger" onclick="changeQty(${item.id}, 'minus')"><i class="fas fa-minus"></i></button>
+              <span class="mx-2 fw-bold small">${item.qty}</span>
+              <button class="btn btn-sm text-success" onclick="changeQty(${item.id}, 'plus')"><i class="fas fa-plus"></i></button>
+          </div>
+      </div>
+    `;
+  });
+
+  // تحديث الأرقام النهائية
+  cartTotalElement.innerText = totalPrice + " ريال";
+  cartBadge.innerText = totalItems;
+}
+
+// التحكم في الزيادة والنقصان
+function changeQty(id, action) {
+  const item = cart.find((product) => product.id === id);
+
+  if (action === "plus") {
+    item.qty++;
+  } else if (action === "minus") {
+    item.qty--;
+  }
+
+  // حذف العنصر لو الكمية بقت صفر
+  if (item.qty <= 0) {
+    cart = cart.filter((product) => product.id !== id);
+  }
+
+  updateCartUI();
+}
+
+// ==========================================
+// 6. الواتساب وخيارات التوصيل (Checkout)
+// ==========================================
+
+// إظهار وإخفاء حقل العنوان
+function toggleAddress(isDelivery) {
+  const addressDiv = document.getElementById("addressDiv");
+  if (isDelivery) {
+    addressDiv.classList.remove("d-none");
+  } else {
+    addressDiv.classList.add("d-none");
+  }
+}
+
+// إرسال الطلب
+function sendToWhatsApp() {
+  // 1. التأكد أن السلة فيها منتجات
+  if (cart.length === 0) {
+    alert("عفوا، سلتك فارغة");
+    return;
+  }
+
+  // 2. تحديد نوع الطلب
+  const isDelivery = document.getElementById("deliveryOption").checked;
+
+  let orderType = isDelivery ? "توصيل للمنزل" : "استلام من المطعم";
+
+  // 3. بناء الرسالة (بدون ايموجي وبفواصل كبيرة)
+  let message = "طلب جديد\n\n";
+
+  // نوع الطلب في الأول
+  message += "نوع الطلب: " + orderType;
+
+  // 3 أسطر فاصلة
+  message += "\n\n";
+
+  message += "الطلبات:\n\n";
+
+  // 4. قائمة الأصناف (العدد أولاً - اسم الصنف)
+  cart.forEach((item) => {
+    message += item.qty + " - " + item.title + "\n";
+    message += "\n";
+  });
+
+  // 5. فتح الرابط
+  const phoneNumber = "966503515243";
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
+
+  window.open(url, "_blank");
+}
+
+const cartOffcanvas = document.getElementById("cartOffcanvas");
+
+// 1. لما السلة تبدأ تفتح -> اخفي الزرار العائم فوراً
+cartOffcanvas.addEventListener("show.bs.offcanvas", function () {
+  floatingBtn.classList.add("d-none");
+});
+
+// 2. لما السلة تتقفل تماماً -> اظهر الزرار تاني (بس بشرط تكون السلة فيها حاجات)
+cartOffcanvas.addEventListener("hidden.bs.offcanvas", function () {
+  if (cart.length > 0) {
+    floatingBtn.classList.remove("d-none");
+  }
+});

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو كشري ترند | Koshary Trend Menu</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-utensils me-2"></i> كشري ترند</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">المنيو</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">كشري ترند <br> مأكولات مصريه ومشويات</h1>
+            <p class="lead mb-4">أطلب الآن من على موقعنا بسهولة واستمتع بالطعم</p>
+            <a href="#menu" class="btn btn-lg btn-danger rounded-pill px-5">تصفح المنيو</a>
+        </div>
+    </header>
+
+    <section id="menu" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title">قائمة الطعام</h2>
+
+                <div id="categoryFilters" class="btn-container">
+                    <button class="category-btn active" type="button" data-id="all">الكل</button>
+                    <button class="category-btn" type="button" data-id="koshary">كشري</button>
+                    <button class="category-btn" type="button" data-id="grill">مشويات</button>
+                    <button class="category-btn" type="button" data-id="crepe">كريب</button>
+                    <button class="category-btn" type="button" data-id="sandwich">سندوتشات</button>
+                    <button class="category-btn" type="button" data-id="hot_meal">وجبات وفتة</button>
+                    <button class="category-btn" type="button" data-id="tagen">طواجن</button>
+                    <button class="category-btn" type="button" data-id="pasta">مكرونات</button>
+                    <button class="category-btn" type="button" data-id="mahashi">محاشي</button>
+                    <button class="category-btn" type="button" data-id="edam">إيدامات</button>
+                    <button class="category-btn" type="button" data-id="soup">شوربة</button>
+                    <button class="category-btn" type="button" data-id="salad">سلطات</button>
+                    <button class="category-btn" type="button" data-id="extra">إضافات</button>
+                    <button class="category-btn" type="button" data-id="dessert">حلويات</button>
+                    <button class="category-btn" type="button" data-id="drinks">مشروبات</button>
+                </div>
+            </div>
+
+            <div class="section-center" id="menuItems">
+            </div>
+        </div>
+    </section>
+
+    <button id="floatingCartBtn"
+        class="btn btn-warning rounded-circle shadow-lg p-3 position-fixed bottom-0 end-0 m-4 d-none primary-color"
+        style="z-index: 1050; width: 60px; height: 60px; border: 2px solid white;" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+        <i class="fas fa-shopping-cart fs-4 text-light"></i>
+        <span id="cartBadge"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light">
+            0
+        </span>
+    </button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header bg-light border-bottom">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h5 class="offcanvas-title fw-bold" id="cartOffcanvasLabel">
+                <i class="fas fa-shopping-basket me-2 text-danger"></i> سلة طلباتك
+            </h5>
+        </div>
+
+        <div class="offcanvas-body p-0">
+            <div id="cartItemsContainer" class="p-3">
+                <div class="text-center text-muted mt-5">
+                    <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                    <p>السلة فارغة حالياً</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas-footer p-3 border-top bg-light">
+            <div class="mb-3">
+                <label class="form-label fw-bold small text-muted">نوع الطلب:</label>
+                <div class="d-flex gap-2" role="group">
+                    <input type="radio" class="btn-check" name="orderType" id="pickupOption" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary w-50 fw-bold" for="pickupOption">
+                        <i class="fas fa-walking me-1"></i> استلام
+                    </label>
+
+                    <input type="radio" class="btn-check" name="orderType" id="deliveryOption" autocomplete="off">
+                    <label class="btn btn-outline-secondary w-50 fw-bold" for="deliveryOption">
+                        <i class="fas fa-motorcycle me-1"></i> توصيل
+                    </label>
+                </div>
+                <small class="text-muted d-block mt-2" style="font-size: 0.8rem;">
+                    * في حالة التوصيل، سيتم طلب الموقع عبر واتساب.
+                </small>
+            </div>
+
+            <div class="d-flex justify-content-between mb-3 border-top pt-2">
+                <span class="fw-bold fs-5">الإجمالي:</span>
+                <span class="fw-bold fs-5 text-danger" id="cartTotal">0 ريال</span>
+            </div>
+
+            <button onclick="sendToWhatsApp()" class="btn btn-success w-100 py-2 fw-bold rounded-pill">
+                <i class="fab fa-whatsapp me-2"></i> إرسال الطلب للواتساب
+            </button>
+        </div>
+    </div>
+
+    <footer id="contact" class="text-center">
+        <div class="container">
+            <h3 class="mb-4 fw-bold">تواصل معنا</h3>
+            <p>
+                <i class="fas fa-map-marker-alt text-warning mx-2"></i> المملكة العربية السعودية - حفر الباطن <br> شارع
+                الامير سلطان
+            </p>
+
+            <div class="mt-4">
+                <a href="https://www.facebook.com/share/1D9AVdj3mf/?mibextid=wwXIfr" target="_blank"
+                    rel="noopener noreferrer" class="text-white mx-3 fs-4 text-decoration-none">
+                    <i class="fab fa-facebook"></i>
+                </a>
+
+                <a href="https://www.instagram.com/kosharytrend?igsh=a2swcnEzM2twYnZo&utm_source=qr" target="_blank"
+                    rel="noopener noreferrer" class="text-white mx-3 fs-4 text-decoration-none">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@koshary.trend?_r=1&_t=ZS-93abrnvmnln" target="_blank"
+                    rel="noopener noreferrer" class="text-white mx-3 fs-4 text-decoration-none">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+
+                <a href="https://snapchat.com/t/RsiQpBLi" target="_blank" rel="noopener noreferrer"
+                    class="text-white mx-3 fs-4 text-decoration-none">
+                    <i class="fab fa-snapchat-ghost"></i>
+                </a>
+
+                <a href="https://wa.me/966503515243" target="_blank" rel="noopener noreferrer"
+                    class="text-white mx-3 fs-4 text-decoration-none">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+
+            <p class="mt-4 small">&copy; 2026 مطعم كشري ترند. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
