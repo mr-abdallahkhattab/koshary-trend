@@ -1,6 +1,9 @@
-// بيانات المنيو
+/* * Koshary Trend - Professional Script
+ */
+
+// --- 1. Menu Data ---
 const menuData = [
-  // --- قسم الكشري ---
+  // Koshary
   {
     id: 1,
     title: "علبة كشري صغيرة",
@@ -86,7 +89,7 @@ const menuData = [
     img: "images/k-xl.jpg",
   },
 
-  // --- قسم الكريب ---
+  // Crepe
   {
     id: 11,
     title: "كريب بطاطس",
@@ -151,7 +154,7 @@ const menuData = [
     img: "images/kr-sog.jpg",
   },
 
-  // --- قسم المشويات ---
+  // Grill
   {
     id: 17,
     title: "نص حبة على الفحم",
@@ -286,9 +289,7 @@ const menuData = [
     img: "images/unnamed (41).jpg",
   },
 
-  // ==========================================================
-  // 2. قسم السندوتشات (Sandwiches)
-  // ==========================================================
+  // Sandwiches
   {
     id: 100,
     title: "سندوتش سجق",
@@ -346,9 +347,7 @@ const menuData = [
     img: "images/unnamed (49).jpg",
   },
 
-  // ==========================================================
-  // 3. قسم المحاشي (Mahashi)
-  // ==========================================================
+  // Mahashi
   {
     id: 120,
     title: "محشى مشكل صغير",
@@ -399,9 +398,7 @@ const menuData = [
     img: "images/unnamed (56).jpg",
   },
 
-  // ==========================================================
-  // 4. قسم الإضافات والأرز (Extras)
-  // ==========================================================
+  // Extras
   {
     id: 140,
     title: "بطاطس بوم فريت",
@@ -438,9 +435,7 @@ const menuData = [
     img: "images/unnamed (61).jpg",
   },
 
-  // ==========================================================
-  // 5. قسم الإيدامات (Edam)
-  // ==========================================================
+  // Edam
   {
     id: 150,
     title: "ملوخية",
@@ -470,9 +465,7 @@ const menuData = [
     img: "images/unnamed (65).jpg",
   },
 
-  // ==========================================================
-  // 6. قسم الوجبات والفتة (Hot Meals)
-  // ==========================================================
+  // Hot Meals
   {
     id: 170,
     title: "فته لحم ضاني",
@@ -530,9 +523,7 @@ const menuData = [
     img: "images/unnamed (76).jpg",
   },
 
-  // ==========================================================
-  // 7. قسم الطواجن (Tagen)
-  // ==========================================================
+  // Tagens
   {
     id: 210,
     title: "طاجن خضار مشکل لحمة",
@@ -590,9 +581,7 @@ const menuData = [
     img: "images/unnamed (92).jpg",
   },
 
-  // ==========================================================
-  // 8. قسم المكرونات (Pasta)
-  // ==========================================================
+  // Pasta
   {
     id: 230,
     title: "مكرونة بلونيز باللحمة المفرومة",
@@ -629,9 +618,7 @@ const menuData = [
     img: "images/unnamed (97).jpg",
   },
 
-  // ==========================================================
-  // 9. قسم الشوربة (Soup)
-  // ==========================================================
+  // Soup
   {
     id: 200,
     title: "شوربة دجاج بالكريمة",
@@ -661,9 +648,7 @@ const menuData = [
     img: "images/unnamed (84).jpg",
   },
 
-  // ==========================================================
-  // 10. قسم السلطات (Salad)
-  // ==========================================================
+  // Salad
   {
     id: 190,
     title: "علبة طحينه",
@@ -693,9 +678,7 @@ const menuData = [
     img: "images/unnamed (80).jpg",
   },
 
-  // ==========================================================
-  // 11. قسم الحلويات (Dessert)
-  // ==========================================================
+  // Dessert
   {
     id: 160,
     title: "رز بالحليب فرن بالقشطه",
@@ -718,9 +701,7 @@ const menuData = [
     img: "images/unnamed (67).jpg",
   },
 
-  // ==========================================================
-  // 12. قسم المشروبات (Drinks)
-  // ==========================================================
+  // Drinks
   {
     id: 250,
     title: "سفن اب",
@@ -786,235 +767,249 @@ const menuData = [
   },
 ];
 
+// --- 2. Selectors ---
 const menuContainer = document.getElementById("menuItems");
-const btns = document.querySelectorAll(".category-btn"); // لاحظ الاسم الجديد للكلاس
+const categoryBtns = document.querySelectorAll(".category-btn");
 const cartContainer = document.getElementById("cartItemsContainer");
 const cartTotalElement = document.getElementById("cartTotal");
 const cartBadge = document.getElementById("cartBadge");
 const floatingBtn = document.getElementById("floatingCartBtn");
+const searchInput = document.getElementById("searchInput");
 
-// مصفوفة السلة الفاضية
 let cart = [];
 
-// ==========================================
-// 3. التشغيل عند فتح الصفحة (Initialization)
-// ==========================================
-window.addEventListener("DOMContentLoaded", function () {
+// --- 3. Initialization ---
+window.addEventListener("DOMContentLoaded", () => {
   displayMenu(menuData);
 });
 
-// ==========================================
-// 4. دوال العرض والفلتر (Display & Filter)
-// ==========================================
+// --- 4. Search Logic ---
+if (searchInput) {
+  searchInput.addEventListener("keyup", (e) => {
+    const searchTerm = e.target.value.toLowerCase();
 
-// دالة رسم المنيو على الشاشة
-function displayMenu(items) {
-  let displayMenu = items.map(function (item) {
+    const filteredMenu = menuData.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(searchTerm) ||
+        item.category.toLowerCase().includes(searchTerm)
+      );
+    });
+
+    displayMenu(filteredMenu);
+  });
+}
+
+// --- 5. Button & UI Helpers (Professional) ---
+
+// Generate button markup (Add vs Counter) based on cart state
+function getButtonMarkup(id) {
+  const itemInCart = cart.find((p) => p.id === id);
+
+  if (itemInCart) {
     return `
+        <div class="d-flex align-items-center justify-content-between rounded-pill border border-danger shadow-sm bg-white" style="width: 100%;">
+            <button class="btn btn-sm text-danger" onclick="decreaseItem(${id})"><i class="fas fa-minus"></i></button>
+            <span class="fw-bold text-dark mx-2">${itemInCart.qty}</span>
+            <button class="btn btn-sm text-success" onclick="addToCart(${id})"><i class="fas fa-plus"></i></button>
+        </div>
+        `;
+  } else {
+    return `
+        <button class="btn-simple-add w-100" onclick="addToCart(${id})">
+            <i class="fas fa-cart-plus ms-2"></i> أضف 
+        </button>
+        `;
+  }
+}
+
+// Update specific card button without redrawing entire menu
+function updateCardButton(id) {
+  const btnContainer = document.getElementById(`btn-container-${id}`);
+  if (btnContainer) {
+    btnContainer.innerHTML = getButtonMarkup(id);
+  }
+}
+
+// --- 6. Display & Filter Functions ---
+function displayMenu(items) {
+  if (!items || items.length === 0) {
+    menuContainer.innerHTML = `<div class="text-center w-100 mt-5"><h5 class="text-muted">No items found</h5></div>`;
+    return;
+  }
+
+  const html = items
+    .map(
+      (item) => `
       <div class="menu-card">
           <div style="overflow: hidden;">
-              <img src="${item.img}" class="card-img-top" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x400?text=غير+متوفر'">
+              <img src="${item.img}" class="card-img-top" alt="${
+        item.title
+      }" loading="lazy"
+                   onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
           </div>
           <div class="card-body">
               <h5 class="card-title">${item.title}</h5>
-              <div class="card-footer-actions">
-                  <span class="card-price">${item.price}</span>
-                  <button class="btn-simple-add" onclick="addToCart(${item.id})">
-                      <i class="fas fa-cart-plus ms-2"></i> أضف 
-                  </button>
+              <div class="card-footer-actions d-flex justify-content-between align-items-center">
+                  <span class="card-price text-primary fw-bold">${
+                    item.price
+                  }</span>
+                  <div id="btn-container-${item.id}" style="width: 120px;">
+                      ${getButtonMarkup(item.id)}
+                  </div>
               </div>
           </div>
       </div>
-    `;
-  });
-  displayMenu = displayMenu.join("");
-  menuContainer.innerHTML = displayMenu;
+    `
+    )
+    .join("");
+
+  menuContainer.innerHTML = html;
 }
 
-// تفعيل أزرار الفلتر
-btns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    // نشيل active من كل الزراير ونحطه على اللي اتداس
-    btns.forEach(function (b) {
-      b.classList.remove("active");
-    });
+// Category Filters
+categoryBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    categoryBtns.forEach((b) => b.classList.remove("active"));
     e.currentTarget.classList.add("active");
 
     const category = e.currentTarget.dataset.id;
 
-    // تصفية البيانات
-    const menuCategory = menuData.filter(function (menuItem) {
-      return menuItem.category === category;
-    });
-
     if (category === "all") {
       displayMenu(menuData);
     } else {
+      const menuCategory = menuData.filter(
+        (item) => item.category === category
+      );
       displayMenu(menuCategory);
     }
   });
 });
 
-// ==========================================
-// 5. منطق سلة المشتريات (Cart Logic)
-// ==========================================
+// --- 7. Cart Logic ---
 
-// إضافة منتج للسلة
 function addToCart(id) {
-  // ندور على المنتج في المنيو الأصلي
   const item = menuData.find((product) => product.id === id);
-  // نشوف هل هو موجود في السلة ولا لأ
   const itemInCart = cart.find((product) => product.id === id);
 
   if (itemInCart) {
-    // لو موجود، زود العدد
     itemInCart.qty++;
   } else {
-    // لو جديد، ضيفه وخليه عدده 1
     cart.push({ ...item, qty: 1 });
   }
 
-  // تحديث شكل السلة والعداد (بدون فتح السلة أوتوماتيك)
   updateCartUI();
-
-  // (اختياري) ممكن تعمل Alert صغير هنا يعرف العميل إن المنتج انضاف
-  // alert("تمت الإضافة للسلة!");
+  updateCardButton(id); // Sync UI
 }
 
-// رسم محتويات السلة وحساب الإجمالي
+function decreaseItem(id) {
+  const itemInCart = cart.find((product) => product.id === id);
+  if (!itemInCart) return;
+
+  itemInCart.qty--;
+
+  if (itemInCart.qty <= 0) {
+    cart = cart.filter((product) => product.id !== id);
+  }
+
+  updateCartUI();
+  updateCardButton(id); // Sync UI (will revert to Add button if 0)
+}
+
 function updateCartUI() {
   cartContainer.innerHTML = "";
   let totalPrice = 0;
   let totalItems = 0;
 
-  // لو السلة فاضية
+  // Check empty state
   if (cart.length === 0) {
     cartContainer.innerHTML = `
-        <div class="text-center text-muted mt-5">
-            <i class="fas fa-shopping-cart fa-3x mb-3"></i>
-            <p>السلة فارغة حالياً</p>
-        </div>`;
+            <div class="text-center text-muted mt-5">
+                <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                <p>السلة فارغة حالياً</p>
+            </div>`;
     cartBadge.innerText = "0";
-    floatingBtn.classList.add("d-none"); // نخفي الزر العائم
     cartTotalElement.innerText = "0 ريال";
+
+    const offcanvas = document.getElementById("cartOffcanvas");
+    if (offcanvas && !offcanvas.classList.contains("show")) {
+      floatingBtn.classList.add("d-none");
+    }
     return;
   }
 
-  // إظهار الزر العائم
   floatingBtn.classList.remove("d-none");
 
-  // رسم العناصر
+  // Render Cart Items
   cart.forEach((item) => {
-    // تحويل السعر من نص لرقم (شيل كلمة ريال)
-    // نستخدم trim() عشان لو فيه مسافات زيادة
-    const priceNumber = parseFloat(item.price.replace(" ريال", "").trim());
+    const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, ""));
     const itemTotal = priceNumber * item.qty;
 
     totalPrice += itemTotal;
     totalItems += item.qty;
 
     cartContainer.innerHTML += `
-      <div class="d-flex align-items-center mb-3 border-bottom pb-3">
-          <img src="${item.img}" class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
-          <div class="ms-3 flex-grow-1">
-              <h6 class="mb-0 fw-bold small">${item.title}</h6>
-              <small class="text-primary fw-bold">${itemTotal} ريال</small>
-          </div>
-          <div class="d-flex align-items-center bg-light rounded-pill px-2">
-              <button class="btn btn-sm text-danger" onclick="changeQty(${item.id}, 'minus')"><i class="fas fa-minus"></i></button>
-              <span class="mx-2 fw-bold small">${item.qty}</span>
-              <button class="btn btn-sm text-success" onclick="changeQty(${item.id}, 'plus')"><i class="fas fa-plus"></i></button>
-          </div>
-      </div>
-    `;
+        <div class="d-flex align-items-center mb-3 border-bottom pb-3">
+            <img src="${item.img}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            <div class="ms-3 flex-grow-1">
+                <h6 class="mb-0 fw-bold small">${item.title}</h6>
+                <small class="text-primary fw-bold">${itemTotal} ريال</small>
+            </div>
+            <div class="d-flex align-items-center bg-light rounded-pill px-2">
+                <button class="btn btn-sm text-danger" onclick="changeQtyFromDrawer(${item.id}, 'minus')"><i class="fas fa-minus"></i></button>
+                <span class="mx-2 fw-bold small">${item.qty}</span>
+                <button class="btn btn-sm text-success" onclick="changeQtyFromDrawer(${item.id}, 'plus')"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>`;
   });
 
-  // تحديث الأرقام النهائية
-  cartTotalElement.innerText = totalPrice + " ريال";
+  cartTotalElement.innerText = `${totalPrice} ريال`;
   cartBadge.innerText = totalItems;
 }
 
-// التحكم في الزيادة والنقصان
-function changeQty(id, action) {
-  const item = cart.find((product) => product.id === id);
-
+// Logic for Drawer Buttons (syncs with Main Menu)
+function changeQtyFromDrawer(id, action) {
   if (action === "plus") {
-    item.qty++;
-  } else if (action === "minus") {
-    item.qty--;
-  }
-
-  // حذف العنصر لو الكمية بقت صفر
-  if (item.qty <= 0) {
-    cart = cart.filter((product) => product.id !== id);
-  }
-
-  updateCartUI();
-}
-
-// ==========================================
-// 6. الواتساب وخيارات التوصيل (Checkout)
-// ==========================================
-
-// إظهار وإخفاء حقل العنوان
-function toggleAddress(isDelivery) {
-  const addressDiv = document.getElementById("addressDiv");
-  if (isDelivery) {
-    addressDiv.classList.remove("d-none");
+    addToCart(id);
   } else {
-    addressDiv.classList.add("d-none");
+    decreaseItem(id);
   }
 }
 
-// إرسال الطلب
+// --- 8. Checkout & Utils ---
 function sendToWhatsApp() {
-  // 1. التأكد أن السلة فيها منتجات
   if (cart.length === 0) {
     alert("عفوا، سلتك فارغة");
     return;
   }
 
-  // 2. تحديد نوع الطلب
   const isDelivery = document.getElementById("deliveryOption").checked;
+  const orderType = isDelivery ? "توصيل للمنزل" : "استلام من المطعم";
 
-  let orderType = isDelivery ? "توصيل للمنزل" : "استلام من المطعم";
-
-  // 3. بناء الرسالة (بدون ايموجي وبفواصل كبيرة)
   let message = "طلب جديد\n\n";
+  message += `نوع الطلب: ${orderType}\n\n`;
+  message += "الطلبات:\n";
 
-  // نوع الطلب في الأول
-  message += "نوع الطلب: " + orderType;
-
-  // 3 أسطر فاصلة
-  message += "\n\n";
-
-  message += "الطلبات:\n\n";
-
-  // 4. قائمة الأصناف (العدد أولاً - اسم الصنف)
   cart.forEach((item) => {
-    message += item.qty + " - " + item.title + "\n";
-    message += "\n";
+    message += `${item.qty}x ${item.title}\n`;
   });
 
-  // 5. فتح الرابط
-  const phoneNumber = "966503515243";
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message
-  )}`;
+  message += `\nالإجمالي: ${cartTotalElement.innerText}`;
 
-  window.open(url, "_blank");
+  const phoneNumber = "966503515243";
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
 
+// Offcanvas Event Listeners
 const cartOffcanvas = document.getElementById("cartOffcanvas");
 
-// 1. لما السلة تبدأ تفتح -> اخفي الزرار العائم فوراً
-cartOffcanvas.addEventListener("show.bs.offcanvas", function () {
-  floatingBtn.classList.add("d-none");
-});
-
-// 2. لما السلة تتقفل تماماً -> اظهر الزرار تاني (بس بشرط تكون السلة فيها حاجات)
-cartOffcanvas.addEventListener("hidden.bs.offcanvas", function () {
-  if (cart.length > 0) {
-    floatingBtn.classList.remove("d-none");
-  }
-});
+if (cartOffcanvas) {
+  cartOffcanvas.addEventListener("show.bs.offcanvas", () =>
+    floatingBtn.classList.add("d-none")
+  );
+  cartOffcanvas.addEventListener("hidden.bs.offcanvas", () => {
+    if (cart.length > 0) floatingBtn.classList.remove("d-none");
+  });
+}

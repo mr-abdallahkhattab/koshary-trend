@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منيو كشري ترند | Koshary Trend Menu</title>
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#e63946">
-    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="icon" type="image/png" href="images/icon-192.png">
+
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -21,9 +20,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-utensils me-2"></i> كشري ترند</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
@@ -41,6 +42,16 @@
             <a href="#menu" class="btn btn-lg btn-danger rounded-pill px-5">تصفح المنيو</a>
         </div>
     </header>
+
+    <div class="container mt-4 mb-4">
+        <div class="search-wrapper shadow-sm">
+            <span class="search-icon">
+                <i class="fas fa-search"></i>
+            </span>
+            <input type="text" id="searchInput" class="form-control custom-search-input"
+                placeholder="عايز تاكل إيه النهاردة؟">
+        </div>
+    </div>
 
     <section id="menu" class="py-5">
         <div class="container">

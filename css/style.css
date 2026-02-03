@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 
+/* Variables & Global Reset */
 :root {
     --primary-color: #e63946;
-    /* أحمر */
     --secondary-color: #f1faee;
-    /* أبيض كريمي */
     --accent-color: #fca311;
-    /* أصفر ذهبي */
     --dark-color: #1d3557;
-    /* كحلي غامق */
     --card-bg: #ffffff;
 }
 
@@ -29,7 +26,7 @@ body {
     border-color: var(--primary-color) !important;
 }
 
-/* --- Navbar --- */
+/* Navbar Styling */
 .navbar {
     background-color: var(--primary-color);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -43,14 +40,14 @@ body {
     text-decoration: none;
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .hero-section {
     position: relative;
     overflow: hidden;
     color: white;
     padding: 80px 0;
     text-align: center;
-    border-bottom: 5px solid var(--accent-color);
+    border-bottom: 5px solid var(--primary-color);
     background-color: var(--dark-color);
     min-height: 400px;
     display: flex;
@@ -58,6 +55,7 @@ body {
     justify-content: center;
 }
 
+/* Background Image Layer */
 .hero-section::before {
     content: "";
     position: absolute;
@@ -65,13 +63,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* تأكد من مسار الخلفية */
     background: url('../images/background.jpg') no-repeat center center/cover;
     filter: blur(4px);
     transform: scale(1.1);
     z-index: 1;
 }
 
+/* Dark Overlay Layer */
 .hero-section::after {
     content: "";
     position: absolute;
@@ -80,7 +78,6 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    /* طبقة سوداء شفافة */
     z-index: 2;
 }
 
@@ -89,23 +86,68 @@ body {
     z-index: 3;
 }
 
-/* --- Filters (الأزرار) --- */
+/* Search Bar */
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 5px 20px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease-in-out;
+}
+
+.search-wrapper:focus-within {
+    border-color: #dc3545;
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
+    transform: translateY(-2px);
+}
+
+.search-icon {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.search-wrapper:focus-within .search-icon {
+    color: #dc3545;
+}
+
+.custom-search-input {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent;
+    padding: 10px 0;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    color: #333;
+    height: auto;
+}
+
+.custom-search-input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+/* Filter Buttons (Horizontal Scroll) */
 .btn-container {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    /* سكرول جانبي */
     justify-content: flex-start;
     padding: 10px 5px;
     gap: 10px;
     margin-bottom: 2rem;
     -ms-overflow-style: none;
-    /* إخفاء السكرول بار */
     scrollbar-width: none;
 }
 
 .btn-container::-webkit-scrollbar {
     display: none;
+    /* Hide scrollbar Chrome/Safari */
 }
 
 .category-btn {
@@ -131,16 +173,14 @@ body {
     box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
 }
 
-/* --- Menu Grid (الشبكة) --- */
+/* Menu Grid & Cards */
 .section-center {
     display: grid;
-    /* كروت متجاوبة أوتوماتيكياً */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     padding: 0 0.5rem;
 }
 
-/* --- Menu Card (الكارت) --- */
 .menu-card {
     background: var(--card-bg);
     border-radius: 20px;
@@ -160,7 +200,6 @@ body {
 
 .card-img-top {
     height: 250px;
-    /* ارتفاع موحد للصور */
     width: 100%;
     object-fit: cover;
     border-bottom: 4px solid var(--primary-color);
@@ -215,7 +254,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* --- Offcanvas (السلة) --- */
+/* Offcanvas (Cart Sidebar) */
 .offcanvas-header {
     background-color: var(--primary-color);
 }
@@ -228,36 +267,32 @@ body {
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* --- تنسيق أزرار التوصيل والاستلام --- */
+/* Checkout Radio Buttons */
 
-/* الوضع الطبيعي (الغير مختار) */
+/* Default State */
 .btn-check+.btn-outline-secondary {
     border-color: #ddd;
-    /* حدود رمادية خفيفة */
     color: var(--dark-color);
-    /* لون النص كحلي */
     background-color: white;
     transition: all 0.3s ease;
 }
 
-/* الوضع المختار (لما يدوس عليه) - يتحول للأحمر */
+/* Active/Checked State */
 .btn-check:checked+.btn-outline-secondary {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
     color: white !important;
     box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
-    /* ظل أحمر شيك */
     transform: translateY(-2px);
-    /* رفعة بسيطة لفوق */
 }
 
-/* لما يوقف عليه بالماوس (Hover) */
+/* Hover State */
 .btn-check+.btn-outline-secondary:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
 }
 
-/* --- Footer (الفوتر) --- */
+/* Footer */
 footer {
     background-color: rgb(180, 0, 0);
     color: white;
