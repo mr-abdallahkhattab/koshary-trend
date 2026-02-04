@@ -8,7 +8,6 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-
 // --- 1. Menu Data ---
 const menuData = [
   // Koshary
@@ -846,29 +845,30 @@ function displayMenu(items) {
   }
 
   const html = items
-    .map(
-      (item) => `
+    .map((item, index) => {
+      const loadingStrategy = index < 4 ? "eager" : "lazy";
+
+      return `
       <div class="menu-card">
-          <div style="overflow: hidden;">
-              <img src="${item.img}" class="card-img-top" alt="${
-        item.title
-      }" loading="lazy"
-                   onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+          <div style="overflow: hidden; position: relative; background-color: #f0f0f0;">
+              <img src="${item.img}" class="card-img-top" alt="${item.title}" 
+                   loading="${loadingStrategy}" 
+                   width="500" height="250"
+                   style="object-fit: cover; aspect-ratio: 2/1;"
+                   onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
           </div>
           <div class="card-body">
               <h5 class="card-title">${item.title}</h5>
               <div class="card-footer-actions d-flex justify-content-between align-items-center">
-                  <span class="card-price text-primary fw-bold">${
-                    item.price
-                  }</span>
+                  <span class="card-price fw-bold">${item.price}</span>
                   <div id="btn-container-${item.id}" style="width: 120px;">
                       ${getButtonMarkup(item.id)}
                   </div>
               </div>
           </div>
       </div>
-    `
-    )
+    `;
+    })
     .join("");
 
   menuContainer.innerHTML = html;

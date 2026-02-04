@@ -203,6 +203,8 @@ body {
     width: 100%;
     object-fit: cover;
     border-bottom: 4px solid var(--primary-color);
+    background-color: #e0e0e0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .card-body {
@@ -230,7 +232,7 @@ body {
 }
 
 .card-price {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     font-size: 1.3rem;
     font-weight: 800;
 }
