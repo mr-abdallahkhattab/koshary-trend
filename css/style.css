@@ -301,3 +301,8 @@ footer {
     padding: 40px 0;
     margin-top: 60px;
 }
+
+@keyframes loadingSkeleton {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
