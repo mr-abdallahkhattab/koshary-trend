@@ -1,4 +1,4 @@
-const CACHE_NAME = "koshary-final-release-v1";
+const CACHE_NAME = "koshary-final-release-v2";
 const ASSETS = [
   "/",
   "/index.html",
@@ -12,6 +12,8 @@ const ASSETS = [
 
 // 1. Install Service Worker
 self.addEventListener("install", (e) => {
+  self.skipWaiting();
+
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS);
@@ -19,7 +21,24 @@ self.addEventListener("install", (e) => {
   );
 });
 
-// 2. Activate Service Worker
+// 2. Activate Service Worker (cleanup old cache)
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+
+  self.clients.claim();
+});
+
+// 3. Fetch Handler (serve cached files first)
 self.addEventListener("fetch", (e) => {
   e.respondWith(
     caches.match(e.request).then((response) => {
