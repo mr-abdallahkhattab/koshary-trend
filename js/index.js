@@ -10,6 +10,41 @@ if ("serviceWorker" in navigator) {
 
 // --- 1. Menu Data ---
 const menuData = [
+  // --- RAMADAN START:
+  {
+    id: 901,
+    title: "وجبة ربع شيش - فحم",
+    price: "13 ريال",
+    category: "ramadan",
+    img: "images/rob3-sheesh.jpeg",
+    description: "أرز + شوربة + سلطة + مخلل + مياه + تمر",
+  },
+  {
+    id: 902,
+    title: "وجبة كفتة",
+    price: "15 ريال",
+    category: "ramadan",
+    img: "images/kofta-ram.jpeg",
+    description: "أرز + شوربة + سلطة + مخلل + مياه + تمر",
+  },
+  {
+    id: 903,
+    title: "وجبة لحم",
+    price: "15 ريال",
+    category: "ramadan",
+    img: "images/la7m-ram.jpeg",
+    description: "أرز + إيدام + سلطة + مخلل + مياه + تمر",
+  },
+  {
+    id: 904,
+    title: "وجبة ربع حبة فرن",
+    price: "11 ريال",
+    category: "ramadan",
+    img: "images/rob3-ram-forn.jpeg",
+    description: "أرز + إيدام + سلطة + مخلل + مياه + تمر",
+  },
+  // --- RAMADAN END ---
+
   // Koshary
   {
     id: 1,
@@ -784,6 +819,7 @@ const floatingBtn = document.getElementById("floatingCartBtn");
 const searchInput = document.getElementById("searchInput");
 
 let cart = [];
+let tempProductId = null;
 
 // --- 3. Initialization ---
 window.addEventListener("DOMContentLoaded", () => {
@@ -848,18 +884,34 @@ function displayMenu(items) {
     .map((item, index) => {
       const loadingStrategy = index < 4 ? "eager" : "lazy";
 
+      // --- RAMADAN START:
+      let descriptionHtml = "";
+      if (item.category === "ramadan" && item.description) {
+        descriptionHtml = `<p class="ramadan-description"><i class="fas fa-utensils me-1"></i> ${item.description}</p>`;
+      }
+      // --- RAMADAN END ---
+
       return `
-      <div class="menu-card">
+      <div class="menu-card animate-fade-in">
           <div style="overflow: hidden; position: relative; background-color: #f0f0f0;">
               <img src="${item.img}" class="card-img-top" alt="${item.title}" 
                    loading="${loadingStrategy}" 
                    width="500" height="250"
                    style="object-fit: cover; aspect-ratio: 2/1;"
                    onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
+               
+               ${
+                 item.category === "ramadan"
+                   ? '<span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1 m-2 rounded small fw-bold"><i class="fas fa-moon"></i> رمضان</span>'
+                   : ""
+               }
           </div>
           <div class="card-body">
               <h5 class="card-title">${item.title}</h5>
-              <div class="card-footer-actions d-flex justify-content-between align-items-center">
+              
+              ${descriptionHtml}
+
+              <div class="card-footer-actions d-flex justify-content-between align-items-center mt-auto">
                   <span class="card-price fw-bold">${item.price}</span>
                   <div id="btn-container-${item.id}" style="width: 120px;">
                       ${getButtonMarkup(item.id)}
@@ -877,11 +929,13 @@ function displayMenu(items) {
 // Category Filters
 categoryBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    // UI Update
     categoryBtns.forEach((b) => b.classList.remove("active"));
     e.currentTarget.classList.add("active");
 
     const category = e.currentTarget.dataset.id;
 
+    // Filter Logic
     if (category === "all") {
       displayMenu(menuData);
     } else {
@@ -896,17 +950,62 @@ categoryBtns.forEach((btn) => {
 // --- 7. Cart Logic ---
 
 function addToCart(id) {
-  const item = menuData.find((product) => product.id === id);
-  const itemInCart = cart.find((product) => product.id === id);
-
+  const itemInCart = cart.find((p) => p.id === id);
   if (itemInCart) {
     itemInCart.qty++;
-  } else {
+    updateCartUI();
+    if (menuData.find((p) => p.id === id)) {
+      updateCardButton(id);
+    }
+    return;
+  }
+
+  if (id === 903 || id === 904) {
+    tempProductId = id;
+    const modalEl = document.getElementById("edamModal");
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+    return;
+  }
+
+  const item = menuData.find((product) => product.id === id);
+  if (item) {
     cart.push({ ...item, qty: 1 });
+    updateCartUI();
+    updateCardButton(id);
+  }
+}
+
+function confirmEdamSelection() {
+  const selectedOption = document.querySelector(
+    'input[name="edamOption"]:checked'
+  ).value;
+
+  const originalItem = menuData.find((p) => p.id === tempProductId);
+
+  if (originalItem) {
+    const suffix = selectedOption === "ملوخية" ? 1 : 2;
+    const newId = parseInt(`${tempProductId}${suffix}`);
+
+    const existingItem = cart.find((p) => p.id === newId);
+
+    if (existingItem) {
+      existingItem.qty++;
+    } else {
+      cart.push({
+        ...originalItem,
+        id: newId,
+        title: `${originalItem.title} (${selectedOption})`,
+        qty: 1,
+      });
+    }
   }
 
   updateCartUI();
-  updateCardButton(id); // Sync UI
+
+  const modalEl = document.getElementById("edamModal");
+  const modal = bootstrap.Modal.getInstance(modalEl);
+  modal.hide();
 }
 
 function decreaseItem(id) {
@@ -920,7 +1019,7 @@ function decreaseItem(id) {
   }
 
   updateCartUI();
-  updateCardButton(id); // Sync UI (will revert to Add button if 0)
+  updateCardButton(id);
 }
 
 function updateCartUI() {
@@ -1000,7 +1099,6 @@ function sendToWhatsApp() {
   cart.forEach((item) => {
     message += `${item.qty}x ${item.title}\n`;
   });
-
 
   const phoneNumber = "966503515243";
   window.open(

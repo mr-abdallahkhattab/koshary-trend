@@ -294,6 +294,41 @@ body {
     color: var(--primary-color);
 }
 
+
+
+/* RAMADAN START: */
+
+.ramadan-btn {
+    background-color: #198754 !important;
+    color: #fff !important;
+    border: 2px solid #ffd700 !important;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(25, 135, 84, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.ramadan-btn:hover,
+.ramadan-btn.active {
+    background-color: #146c43 !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.ramadan-description {
+    font-size: 0.85rem;
+    color: #198754;
+    font-weight: 600;
+    margin-bottom: 8px;
+    background-color: #f8f9fa;
+    padding: 5px;
+    border-radius: 5px;
+    border-right: 3px solid #ffd700;
+}
+
+/* --- RAMADAN END --- */
+
+
 /* Footer */
 footer {
     background-color: rgb(180, 0, 0);
@@ -303,6 +338,11 @@ footer {
 }
 
 @keyframes loadingSkeleton {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }

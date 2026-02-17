@@ -71,6 +71,15 @@
 
                 <div id="categoryFilters" class="btn-container">
                     <button class="category-btn active" type="button" data-id="all">الكل</button>
+                    <button class="category-btn ramadan-btn position-relative" type="button" data-id="ramadan">
+                        <i class="fas fa-star"
+                            style="position: absolute; top: 5px; right: 5px; font-size: 8px; color: #ffd700;"></i>
+                        <i class="fas fa-moon me-1"></i> وجبات رمضان
+                        <i class="fas fa-star"
+                            style="position: absolute; bottom: 5px; left: 5px; font-size: 10px; color: #ffd700;"></i>
+                        <i class="fas fa-star"
+                            style="position: absolute; top: 50%; left: 20%; font-size: 6px; color: rgba(255,255,255,0.3);"></i>
+                    </button>
                     <button class="category-btn" type="button" data-id="koshary">كشري</button>
                     <button class="category-btn" type="button" data-id="grill">مشويات</button>
                     <button class="category-btn" type="button" data-id="crepe">كريب</button>
@@ -189,6 +198,42 @@
             <p class="mt-4 small">&copy; 2026 مطعم كشري ترند. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+
+    <div class="modal fade" id="edamModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-danger text-white position-relative justify-content-center">
+                    <h5 class="modal-title fw-bold">اختر نوع الإيدام</h5>
+                    <button type="button" class="btn-close btn-close-white position-absolute" style="right: 15px;"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p class="mb-3 fw-bold">تحب الإيدام يكون إيه؟</p>
+
+                    <div class="d-flex justify-content-center gap-3">
+                        <input type="radio" class="btn-check" name="edamOption" id="edam-molokhia" value="ملوخية"
+                            checked>
+                        <label class="btn btn-outline-success fw-bold px-4 py-2" for="edam-molokhia">
+                            ملوخية
+                        </label>
+
+                        <input type="radio" class="btn-check" name="edamOption" id="edam-mixed" value="خضار مشكل">
+                        <label class="btn btn-outline-danger fw-bold px-4 py-2" for="edam-mixed">
+                            خضار مشكل
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger w-100 fw-bold text-white shadow-sm"
+                        onclick="confirmEdamSelection()">تأكيد وإضافة للسلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/index.js"></script>
