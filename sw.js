@@ -1,4 +1,4 @@
-const CACHE_NAME = "koshary-trend-ramadan";
+const CACHE_NAME = "koshary-final-release-v1";
 const ASSETS = [
   "/",
   "/index.html",
