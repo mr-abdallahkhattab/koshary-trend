@@ -1001,7 +1001,6 @@ function sendToWhatsApp() {
     message += `${item.qty}x ${item.title}\n`;
   });
 
-  message += `\nالإجمالي: ${cartTotalElement.innerText}`;
 
   const phoneNumber = "966503515243";
   window.open(
