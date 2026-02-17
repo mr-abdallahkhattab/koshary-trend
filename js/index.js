@@ -38,10 +38,10 @@ const menuData = [
   {
     id: 904,
     title: "وجبة ربع حبة فرن",
-    price: "11 ريال",
+    price: "9 ريال",
     category: "ramadan",
     img: "images/rob3-ram-forn.jpeg",
-    description: "أرز + إيدام + سلطة + مخلل + مياه + تمر",
+    description: "أرز + سلطة + مخلل + تمر",
   },
   // --- RAMADAN END ---
 
@@ -155,7 +155,7 @@ const menuData = [
   },
   {
     id: 14,
-    title: "كريب كفته مشويه",
+    title: "كريب كباب مشوي",
     price: "20 ريال",
     category: "crepe",
     img: "images/kr-kof.jpg",
@@ -337,7 +337,7 @@ const menuData = [
     title: "سندوتش سجق",
     price: "12 ريال",
     category: "sandwich",
-    img: "images/unnamed (42).jpg",
+    img: "images/sogok-sand.jpeg",
   },
   {
     id: 101,
@@ -379,7 +379,7 @@ const menuData = [
     title: "سندوتش كباب لحم",
     price: "10 ريال",
     category: "sandwich",
-    img: "images/unnamed (48).jpg",
+    img: "images/unnamed (42).jpg",
   },
   {
     id: 107,
@@ -395,27 +395,27 @@ const menuData = [
     title: "محشى مشكل صغير",
     price: "10 ريال",
     category: "mahashi",
-    img: "images/unnamed (50).jpg",
+    img: "images/ma7shy-mshakl-s.jpeg",
   },
   {
     id: 121,
     title: "فرد حمام محشي",
     price: "30 ريال",
-    category: "mahashi",
+    category: "hot_meal",
     img: "images/unnamed (51).jpg",
   },
   {
     id: 122,
     title: "سمبوسة لحم ( 5 حبه )",
     price: "8 ريال",
-    category: "mahashi",
+    category: "extra",
     img: "images/samb.jpg",
   },
   {
     id: 123,
     title: "سمبوسة جبن ( 5 حبه )",
     price: "5 ريال",
-    category: "mahashi",
+    category: "extra",
     img: "images/unnamed (53).jpg",
   },
   {
@@ -437,7 +437,7 @@ const menuData = [
     title: "محشي مشكل كبير",
     price: "20 ريال",
     category: "mahashi",
-    img: "images/unnamed (56).jpg",
+    img: "images/ma7shy-mshakl-xl.jpeg",
   },
 
   // Extras
@@ -960,7 +960,7 @@ function addToCart(id) {
     return;
   }
 
-  if (id === 903 || id === 904) {
+  if (id === 903) {
     tempProductId = id;
     const modalEl = document.getElementById("edamModal");
     const modal = new bootstrap.Modal(modalEl);
