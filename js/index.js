@@ -818,12 +818,24 @@ const cartBadge = document.getElementById("cartBadge");
 const floatingBtn = document.getElementById("floatingCartBtn");
 const searchInput = document.getElementById("searchInput");
 
-let cart = [];
+// ✅ تعديل 1: استرجاع السلة من الذاكرة عند التحميل
+let cart = JSON.parse(localStorage.getItem("kosharyCart")) || [];
 let tempProductId = null;
 
 // --- 3. Initialization ---
 window.addEventListener("DOMContentLoaded", () => {
   displayMenu(menuData);
+  
+  // ✅ تعديل 2: تحديث السلة والزراير فوراً بعد فتح الموقع
+  updateCartUI(); 
+  
+  // نلف على المنتجات اللي في الذاكرة ونحدث زرايرها في القائمة
+  cart.forEach((item) => {
+    // لو المنتج موجود كعنصر أصلي في المنيو، حدث زراره لـ (+ / -)
+    if (menuData.some(p => p.id === item.id)) {
+        updateCardButton(item.id);
+    }
+  });
 });
 
 // --- 4. Search Logic ---
@@ -1023,6 +1035,9 @@ function decreaseItem(id) {
 }
 
 function updateCartUI() {
+  // ✅ تعديل 3: حفظ السلة في الذاكرة عند أي تغيير
+  localStorage.setItem("kosharyCart", JSON.stringify(cart));
+
   cartContainer.innerHTML = "";
   let totalPrice = 0;
   let totalItems = 0;
@@ -1048,7 +1063,9 @@ function updateCartUI() {
 
   // Render Cart Items
   cart.forEach((item) => {
-    const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, ""));
+    // تنظيف السعر من كلمة "ريال" لتحويله لرقم
+    const priceString = String(item.price);
+    const priceNumber = parseFloat(priceString.replace(/[^\d.]/g, ""));
     const itemTotal = priceNumber * item.qty;
 
     totalPrice += itemTotal;
@@ -1056,7 +1073,7 @@ function updateCartUI() {
 
     cartContainer.innerHTML += `
         <div class="d-flex align-items-center mb-3 border-bottom pb-3">
-            <img src="${item.img}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            <img src="${item.img}" class="rounded" style="width: 50px; height: 50px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/50'">
             <div class="ms-3 flex-grow-1">
                 <h6 class="mb-0 fw-bold small">${item.title}</h6>
                 <small class="text-primary fw-bold">${itemTotal} ريال</small>

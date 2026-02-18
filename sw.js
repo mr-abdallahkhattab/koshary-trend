@@ -1,4 +1,4 @@
-const CACHE_NAME = "koshary-final-release-v2";
+const CACHE_NAME = "koshary-test-storage-v3";
 const ASSETS = [
   "/",
   "/index.html",
