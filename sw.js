@@ -1,4 +1,4 @@
-const CACHE_NAME = "koshary-test-storage-v3";
+const CACHE_NAME = "KILL-CACHE-V1";
 const ASSETS = [
   "/",
   "/index.html",
@@ -10,39 +10,24 @@ const ASSETS = [
   "/images/icon-512.png",
 ];
 
-// 1. Install Service Worker
 self.addEventListener("install", (e) => {
   self.skipWaiting();
-
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS);
-    })
-  );
 });
 
-// 2. Activate Service Worker (cleanup old cache)
 self.addEventListener("activate", (e) => {
   e.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keyList) => {
       return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
+        keyList.map((key) => {
+          console.log("Removing old cache:", key);
+          return caches.delete(key);
         })
       );
     })
   );
-
-  self.clients.claim();
+  return self.clients.claim();
 });
 
-// 3. Fetch Handler (serve cached files first)
 self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
-    })
-  );
+  return;
 });
