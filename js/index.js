@@ -8,9 +8,9 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-// --- 1. Menu Data ---
+// Menu Data
 const menuData = [
-  // --- RAMADAN START:
+  // RAMADAN START:
   {
     id: 901,
     title: "وجبة ربع شيش - فحم",
@@ -398,27 +398,6 @@ const menuData = [
     img: "images/ma7shy-mshakl-s.jpeg",
   },
   {
-    id: 121,
-    title: "فرد حمام محشي",
-    price: "30 ريال",
-    category: "hot_meal",
-    img: "images/unnamed (51).jpg",
-  },
-  {
-    id: 122,
-    title: "سمبوسة لحم ( 5 حبه )",
-    price: "8 ريال",
-    category: "extra",
-    img: "images/samb.jpg",
-  },
-  {
-    id: 123,
-    title: "سمبوسة جبن ( 5 حبه )",
-    price: "5 ريال",
-    category: "extra",
-    img: "images/unnamed (53).jpg",
-  },
-  {
     id: 124,
     title: "محشي ورق عنب",
     price: "20 ريال",
@@ -563,6 +542,13 @@ const menuData = [
     price: "40 ريال",
     category: "hot_meal",
     img: "images/unnamed (76).jpg",
+  },
+  {
+    id: 121,
+    title: "فرد حمام محشي",
+    price: "30 ريال",
+    category: "hot_meal",
+    img: "images/unnamed (51).jpg",
   },
 
   // Tagens
@@ -809,7 +795,7 @@ const menuData = [
   },
 ];
 
-// --- 2. Selectors ---
+// Selectors 
 const menuContainer = document.getElementById("menuItems");
 const categoryBtns = document.querySelectorAll(".category-btn");
 const cartContainer = document.getElementById("cartItemsContainer");
@@ -818,27 +804,26 @@ const cartBadge = document.getElementById("cartBadge");
 const floatingBtn = document.getElementById("floatingCartBtn");
 const searchInput = document.getElementById("searchInput");
 
-// ✅ تعديل 1: استرجاع السلة من الذاكرة عند التحميل
+
 let cart = JSON.parse(localStorage.getItem("kosharyCart")) || [];
 let tempProductId = null;
 
-// --- 3. Initialization ---
+// Initialization
 window.addEventListener("DOMContentLoaded", () => {
   displayMenu(menuData);
   
-  // ✅ تعديل 2: تحديث السلة والزراير فوراً بعد فتح الموقع
   updateCartUI(); 
   
-  // نلف على المنتجات اللي في الذاكرة ونحدث زرايرها في القائمة
+ 
   cart.forEach((item) => {
-    // لو المنتج موجود كعنصر أصلي في المنيو، حدث زراره لـ (+ / -)
+  
     if (menuData.some(p => p.id === item.id)) {
         updateCardButton(item.id);
     }
   });
 });
 
-// --- 4. Search Logic ---
+// Search Logic
 if (searchInput) {
   searchInput.addEventListener("keyup", (e) => {
     const searchTerm = e.target.value.toLowerCase();
@@ -854,9 +839,9 @@ if (searchInput) {
   });
 }
 
-// --- 5. Button & UI Helpers (Professional) ---
+// Button & UI Helpers (Professional)
 
-// Generate button markup (Add vs Counter) based on cart state
+// Generate button based on cart state
 function getButtonMarkup(id) {
   const itemInCart = cart.find((p) => p.id === id);
 
@@ -885,7 +870,7 @@ function updateCardButton(id) {
   }
 }
 
-// --- 6. Display & Filter Functions ---
+// Display & Filter Functions
 function displayMenu(items) {
   if (!items || items.length === 0) {
     menuContainer.innerHTML = `<div class="text-center w-100 mt-5"><h5 class="text-muted">No items found</h5></div>`;
@@ -896,12 +881,12 @@ function displayMenu(items) {
     .map((item, index) => {
       const loadingStrategy = index < 4 ? "eager" : "lazy";
 
-      // --- RAMADAN START:
+      // RAMADAN START:
       let descriptionHtml = "";
       if (item.category === "ramadan" && item.description) {
         descriptionHtml = `<p class="ramadan-description"><i class="fas fa-utensils me-1"></i> ${item.description}</p>`;
       }
-      // --- RAMADAN END ---
+      // RAMADAN END
 
       return `
       <div class="menu-card animate-fade-in">
@@ -959,7 +944,7 @@ categoryBtns.forEach((btn) => {
   });
 });
 
-// --- 7. Cart Logic ---
+// Cart Logic
 
 function addToCart(id) {
   const itemInCart = cart.find((p) => p.id === id);
@@ -1035,7 +1020,6 @@ function decreaseItem(id) {
 }
 
 function updateCartUI() {
-  // ✅ تعديل 3: حفظ السلة في الذاكرة عند أي تغيير
   localStorage.setItem("kosharyCart", JSON.stringify(cart));
 
   cartContainer.innerHTML = "";
@@ -1063,7 +1047,6 @@ function updateCartUI() {
 
   // Render Cart Items
   cart.forEach((item) => {
-    // تنظيف السعر من كلمة "ريال" لتحويله لرقم
     const priceString = String(item.price);
     const priceNumber = parseFloat(priceString.replace(/[^\d.]/g, ""));
     const itemTotal = priceNumber * item.qty;
@@ -1099,7 +1082,7 @@ function changeQtyFromDrawer(id, action) {
   }
 }
 
-// --- 8. Checkout & Utils ---
+// Checkout & Utils
 function sendToWhatsApp() {
   if (cart.length === 0) {
     alert("عفوا، سلتك فارغة");
