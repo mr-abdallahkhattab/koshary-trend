@@ -10,41 +10,6 @@ if ("serviceWorker" in navigator) {
 
 // Menu Data
 const menuData = [
-  // RAMADAN START:
-  {
-    id: 901,
-    title: "وجبة ربع شيش - فحم",
-    price: "13 ريال",
-    category: "ramadan",
-    img: "images/rob3-sheesh.jpeg",
-    description: "أرز + شوربة + سلطة + مخلل + مياه + تمر",
-  },
-  {
-    id: 902,
-    title: "وجبة كفتة",
-    price: "15 ريال",
-    category: "ramadan",
-    img: "images/kofta-ram.jpeg",
-    description: "أرز + شوربة + سلطة + مخلل + مياه + تمر",
-  },
-  {
-    id: 903,
-    title: "وجبة لحم",
-    price: "15 ريال",
-    category: "ramadan",
-    img: "images/la7m-ram.jpeg",
-    description: "أرز + إيدام + سلطة + مخلل + مياه + تمر",
-  },
-  {
-    id: 904,
-    title: "وجبة ربع حبة فرن",
-    price: "9 ريال",
-    category: "ramadan",
-    img: "images/rob3-ram-forn.jpeg",
-    description: "أرز + سلطة + مخلل + تمر",
-  },
-  // --- RAMADAN END ---
-
   // Koshary
   {
     id: 1,
@@ -881,13 +846,6 @@ function displayMenu(items) {
     .map((item, index) => {
       const loadingStrategy = index < 4 ? "eager" : "lazy";
 
-      // RAMADAN START:
-      let descriptionHtml = "";
-      if (item.category === "ramadan" && item.description) {
-        descriptionHtml = `<p class="ramadan-description"><i class="fas fa-utensils me-1"></i> ${item.description}</p>`;
-      }
-      // RAMADAN END
-
       return `
       <div class="menu-card animate-fade-in">
           <div style="overflow: hidden; position: relative; background-color: #f0f0f0;">
@@ -896,17 +854,10 @@ function displayMenu(items) {
                    width="500" height="250"
                    style="object-fit: cover; aspect-ratio: 2/1;"
                    onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
-               
-               ${
-                 item.category === "ramadan"
-                   ? '<span class="position-absolute top-0 start-0 bg-success text-white px-2 py-1 m-2 rounded small fw-bold"><i class="fas fa-moon"></i> رمضان</span>'
-                   : ""
-               }
           </div>
           <div class="card-body">
               <h5 class="card-title">${item.title}</h5>
-              
-              ${descriptionHtml}
+
 
               <div class="card-footer-actions d-flex justify-content-between align-items-center mt-auto">
                   <span class="card-price fw-bold">${item.price}</span>
