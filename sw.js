@@ -1,6 +1,6 @@
 // Koshary Trend Service Worker
 
-const CACHE_NAME = "koshary-cache-v2";
+const CACHE_NAME = "koshary-cache-v3";
 
 // Cache only basic static assets on install
 const ASSETS = [
