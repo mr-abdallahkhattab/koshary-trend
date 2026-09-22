@@ -1,10 +1,6 @@
 // Koshary Trend Service Worker
 
-<<<<<<< Updated upstream
-const CACHE_NAME = "koshary-cache-v2";
-=======
 const CACHE_NAME = "koshary-cache-v4";
->>>>>>> Stashed changes
 
 const ASSETS = [
   "/",
