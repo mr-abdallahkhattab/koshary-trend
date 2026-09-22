@@ -1,10 +1,16 @@
-// Service Worker
+// Kill Service Worker & Clear Caches (to leave no trace)
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then(() => console.log("Service Worker Registered ✅"))
-      .catch((err) => console.log("Service Worker Failed ❌", err));
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
+if ("caches" in window) {
+  caches.keys().then(function (names) {
+    for (let name of names) {
+      caches.delete(name);
+    }
   });
 }
 
@@ -754,7 +760,7 @@ const menuData = [
   }
 ];
 
-// Selectors 
+// Selectors
 const menuContainer = document.getElementById("menuItems");
 const categoryBtns = document.querySelectorAll(".category-btn");
 const cartContainer = document.getElementById("cartItemsContainer");
@@ -763,21 +769,18 @@ const cartBadge = document.getElementById("cartBadge");
 const floatingBtn = document.getElementById("floatingCartBtn");
 const searchInput = document.getElementById("searchInput");
 
-
 let cart = JSON.parse(localStorage.getItem("kosharyCart")) || [];
 let tempProductId = null;
 
 // Initialization
 window.addEventListener("DOMContentLoaded", () => {
   displayMenu(menuData);
-  
-  updateCartUI(); 
-  
- 
+
+  updateCartUI();
+
   cart.forEach((item) => {
-  
-    if (menuData.some(p => p.id === item.id)) {
-        updateCardButton(item.id);
+    if (menuData.some((p) => p.id === item.id)) {
+      updateCardButton(item.id);
     }
   });
 });

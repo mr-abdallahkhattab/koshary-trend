@@ -11,7 +11,7 @@ Koshary Trend is a production-ready, bilingual (Arabic/English) menu website bui
 - Arabic-first, RTL layout with responsive design
 - Category filters and instant search
 - Cart with pickup/delivery option and WhatsApp order export
-- PWA-ready with service worker and manifest
+- PWA-ready
 - Clear, product-focused visual layout
 
 ## Tech Stack
@@ -31,17 +31,12 @@ Koshary Trend is a production-ready, bilingual (Arabic/English) menu website bui
 │   ├── bootstrap.bundle.min.js
 │   └── index.js
 ├── images/
-├── manifest.json
-├── sw.js
 └── _headers
 ```
 
 ## Run Locally
-Option 1 (simple):
 - Open `index.html` in your browser.
-
-Option 2 (recommended for service worker):
-- Serve with any static server (example):
+- Or serve with any static server:
 ```
 python3 -m http.server 8080
 ```
