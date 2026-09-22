@@ -1,9 +1,15 @@
-// Remove old Service Workers
+// Kill Service Worker & Clear Caches (to leave no trace)
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (let registration of registrations) {
       registration.unregister();
-      console.log("Service Worker Unregistered 🗑️");
+    }
+  });
+}
+if ("caches" in window) {
+  caches.keys().then(function (names) {
+    for (let name of names) {
+      caches.delete(name);
     }
   });
 }
