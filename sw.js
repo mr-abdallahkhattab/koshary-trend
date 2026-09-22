@@ -1,8 +1,11 @@
 // Koshary Trend Service Worker
 
+<<<<<<< Updated upstream
 const CACHE_NAME = "koshary-cache-v2";
+=======
+const CACHE_NAME = "koshary-cache-v4";
+>>>>>>> Stashed changes
 
-// Cache only basic static assets on install
 const ASSETS = [
   "/",
   "/index.html",
@@ -14,10 +17,8 @@ const ASSETS = [
   "/images/icon-512.png",
 ];
 
-// Install Cache assets
 self.addEventListener("install", (event) => {
   self.skipWaiting();
-
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS);
@@ -25,7 +26,6 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Activate Remove old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -38,36 +38,36 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-
   self.clients.claim();
 });
 
-// Fetch Strategy
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
-  // 1. Cache-First Strategy for Images
-  // Downloads once, then caches locally to make the menu load instantly on next visits.
+  if (req.method !== "GET" || !req.url.startsWith("http")) return;
+
   if (req.destination === "image") {
     event.respondWith(
       caches.match(req).then((cached) => {
         if (cached) return cached;
-        return fetch(req).then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200) {
-            const responseClone = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(req, responseClone);
-            });
-          }
-          return networkResponse;
-        });
+        return fetch(req)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const responseClone = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(req, responseClone);
+              });
+            }
+            return networkResponse;
+          })
+          .catch(
+            () => new Response("", { status: 404, statusText: "Offline" })
+          );
       })
     );
     return;
   }
 
-  // 2. Network-First Strategy for HTML, JS, CSS
-  // Ensures returning users always receive the latest version of the website.
   event.respondWith(
     fetch(req)
       .then((networkResponse) => {
@@ -80,12 +80,14 @@ self.addEventListener("fetch", (event) => {
         return networkResponse;
       })
       .catch(() => {
-        // Fallback to cache if offline
         return caches.match(req).then((cached) => {
-          if (!cached && req.mode === "navigate") {
+          if (cached) return cached;
+
+          if (req.mode === "navigate") {
             return caches.match("/index.html");
           }
-          return cached;
+
+          return new Response("", { status: 404, statusText: "Not Found" });
         });
       })
   );
